@@ -1,0 +1,47 @@
+
+USE [GreekVases];
+SET QUOTED_IDENTIFIER ON ;
+SET ANSI_PADDING OFF;
+/*
+Build Painting description text
+
+*/
+
+-- CONCACTENATE ALL DESCRIPITVE FIELDS TO ONE
+-- REMOVE DECORATED ZONE DESCRIPTION
+
+SELECT BZLY_VaseNbr
+	, ISNULL(LTRIM(RTRIM(Description_NotZoned)),'')
+	+ ISNULL(REPLACE(Description_zero,'0:',''),'') +' ' 
+	+ ISNULL(REPLACE(Description_A,'A:',''),'') +' ' 
+	+ ISNULL(REPLACE(Description_A_B,'A,B:',''),'') +' '
+	+ ISNULL(REPLACE(Description_B,'B:',''),'') +' '
+	+ ISNULL(REPLACE(Description_Body,'BD:',''),'') +' '
+	+ ISNULL(REPLACE(Description_Shoulder,'SH:',''),'') +' '
+	+ ISNULL(REPLACE(Description_Interior,'I:',''),'') +' '
+	+ ISNULL(REPLACE(Description_UnderHandle,'UH:',''),'') +' '
+	+ ISNULL(REPLACE(Description_UF,'UF:',''),'') +' '
+	+ ISNULL(REPLACE(Description_AB,'AB:',''),'') +' '  -- none of these
+	+ ISNULL(REPLACE(Description_NA,'NA:',''),'') +' '
+	+ ISNULL(REPLACE(Description_OV,'OV:',''),'') +' ' -- 1 of these
+	+ ISNULL(REPLACE(Description_A1,'A1:',''),'') +' '
+	+ ISNULL(REPLACE(Description_A2,'A2:',''),'') +' '
+	+ ISNULL(REPLACE(Description_AB1,'AB1:',''),'') +' '
+	+ ISNULL(REPLACE(Description_AH,'AH:',''),'') +' '
+	+ ISNULL(REPLACE(Description_AK,'AK:',''),'') +' ' -- AK is not a decorative zone is attribution to a painter
+	+ ISNULL(REPLACE(Description_BD1,'BD1:',''),'') +''
+	+ ISNULL(REPLACE(Description_BD2,'BD2:',''),'') +''
+	+ ISNULL(REPLACE(Description_HU2,'HU2:',''),'') +''
+	+ ISNULL(REPLACE(Description_IZ,'IZ:',''),'') +''
+	+ ISNULL(REPLACE(Description_MR,'MR:',''),'') +''
+	AS "Description_All"
+INTO #V	
+	
+FROM Staging.VaseParsing
+
+SELECT [BZLY_VaseNbr], 
+LTRIM(RTRIM(Description_All)) AS "Description_All"
+-- INTO Staging.VaseDescAll
+FROM #V
+
+drop table #V
