@@ -1,110 +1,93 @@
-SET NOCOUNT ON
+SET NOCOUNT OFF
 GO
-SELECT DISTINCT VaseNbr
-	, FLD01 AS "Description_All"
-INTO ##D
-FROM dbo.STG_Inbound 
-where FLD01 NOT LIKE '0:%' AND FLD01 NOT LIKE 'A:%' AND FLD01 NOT LIKE '%by%'
-	AND FLD01 NOT IN (SELECT Input FROM dbo.LU_Geography)
-	AND FLD01 NOT LIKE 'B:%' AND FLD01 NOT LIKE 'BD:%' 
-	AND ISNUMERIC(LEFT(FLD01,1))=0
-	AND FLD01 NOT LIKE 'Kalos%'
+SELECT DISTINCT LC.BZLY_VaseNbr
+	, LC.FLD02 AS "Description_All"
+--INTO ##D
+FROM LandingZone.Canidate AS "LC"
+	JOIN Staging.VaseParsing AS "VP" 
+		ON LC.BZLY_VaseNbr = VP.BZLY_VaseNbr
+where LC.FLD02 LIKE '%:%'AND  LC.FLD02 NOT LIKE '%by%'
+	AND LC.FLD02 NOT IN (SELECT Input FROM dbo.LU_Geography)
+	AND ISNUMERIC(LEFT(LC.FLD02,1))=0
+	AND LC.FLD02 NOT LIKE 'Inscription%'
 UNION 
-SELECT VaseNbr
-	, FLD02 AS "Description_All"
-FROM dbo.STG_Inbound 
-where FLD02 NOT LIKE '0:%' AND FLD02 NOT LIKE 'A:%' AND FLD02 NOT LIKE '%by%'
-	AND FLD02 NOT IN (SELECT Input FROM dbo.LU_Geography)
-	AND FLD02 NOT LIKE 'B:%' AND FLD02 NOT LIKE 'BD:%' 
-	AND ISNUMERIC(LEFT(FLD02,1))=0
-	AND FLD02 NOT LIKE 'Kalos%'
+	SELECT DISTINCT LC.BZLY_VaseNbr
+		, LC.FLD03 AS "Description_All"
+	FROM LandingZone.Canidate AS "LC"
+		JOIN Staging.VaseParsing AS "VP" 
+			ON LC.BZLY_VaseNbr = VP.BZLY_VaseNbr
+	where LC.FLD03 LIKE '%:%'AND  LC.FLD03 NOT LIKE '%by%'
+		AND ISNUMERIC(LEFT(LC.FLD03,1))=0
+		AND LC.FLD03 NOT LIKE 'Inscription%'
 UNION 
-SELECT VaseNbr
-	, FLD03 AS "Description_All"
-FROM dbo.STG_Inbound 
-where FLD03 NOT LIKE '0:%' AND FLD03 NOT LIKE 'A:%' AND FLD03 NOT LIKE '%by%'
-	AND FLD03 NOT IN (SELECT Input FROM dbo.LU_Geography)
-	AND FLD03 NOT LIKE 'B:%' AND FLD03 NOT LIKE 'BD:%' 
-	AND ISNUMERIC(LEFT(FLD03,1))=0
-	AND FLD03 NOT LIKE 'Kalos%'
+	SELECT DISTINCT LC.BZLY_VaseNbr
+		, LC.FLD04 AS "Description_All"
+	FROM LandingZone.Canidate AS "LC"
+		JOIN Staging.VaseParsing AS "VP" 
+			ON LC.BZLY_VaseNbr = VP.BZLY_VaseNbr
+	where LC.FLD04 LIKE '%:%'AND  LC.FLD04 NOT LIKE '%by%'
+		AND ISNUMERIC(LEFT(LC.FLD04,1))=0
+		AND LC.FLD04 NOT LIKE 'Inscription%'
 UNION 
-SELECT VaseNbr
-	, FLD04 AS "Description_All"
-FROM dbo.STG_Inbound 
-where FLD04 NOT LIKE '0:%' AND FLD04 NOT LIKE 'A:%' AND FLD04 NOT LIKE '%by%'
-	AND FLD04 NOT IN (SELECT Input FROM dbo.LU_Geography)
-	AND FLD04 NOT LIKE 'B:%' AND FLD04 NOT LIKE 'BD:%' 
-	AND ISNUMERIC(LEFT(FLD04,1))=0
-	AND FLD04 NOT LIKE 'Kalos%'
+	SELECT DISTINCT LC.BZLY_VaseNbr
+		, LC.FLD05 AS "Description_All"
+	FROM LandingZone.Canidate AS "LC"
+		JOIN Staging.VaseParsing AS "VP" 
+			ON LC.BZLY_VaseNbr = VP.BZLY_VaseNbr
+	where LC.FLD05 LIKE '%:%'AND  LC.FLD05 NOT LIKE '%by%'
+		AND ISNUMERIC(LEFT(LC.FLD05,1))=0
+		AND LC.FLD05 NOT LIKE 'Inscription%'
 UNION 
-SELECT VaseNbr
-	, FLD05 AS "Description_All"
-FROM dbo.STG_Inbound 
-where FLD05 NOT LIKE '0:%' AND FLD05 NOT LIKE 'A:%' AND FLD05 NOT LIKE '%by%'
-	AND FLD05 NOT IN (SELECT Input FROM dbo.LU_Geography)
-	AND FLD05 NOT LIKE 'B:%' AND FLD05 NOT LIKE 'BD:%' 
-	AND ISNUMERIC(LEFT(FLD05,1))=0
-	AND FLD05 NOT LIKE 'Kalos%'
+	SELECT DISTINCT LC.BZLY_VaseNbr
+		, LC.FLD06 AS "Description_All"
+	FROM LandingZone.Canidate AS "LC"
+		JOIN Staging.VaseParsing AS "VP" 
+			ON LC.BZLY_VaseNbr = VP.BZLY_VaseNbr
+	where LC.FLD06 LIKE '%:%'AND  LC.FLD06 NOT LIKE '%by%'
+		AND ISNUMERIC(LEFT(LC.FLD06,1))=0
+		AND LC.FLD06 NOT LIKE 'Inscription%'
 UNION 
-SELECT VaseNbr
-	, FLD06 AS "Description_All"
-FROM dbo.STG_Inbound 
-where FLD06 NOT LIKE '0:%' AND FLD06 NOT LIKE 'A:%' AND FLD06 NOT LIKE '%by%'
-	AND FLD06 NOT IN (SELECT Input FROM dbo.LU_Geography)
-	AND FLD06 NOT LIKE 'B:%' AND FLD06 NOT LIKE 'BD:%' 
-	AND ISNUMERIC(LEFT(FLD06,1))=0
-	AND FLD06 NOT LIKE 'Kalos%'
+	SELECT DISTINCT LC.BZLY_VaseNbr
+		, LC.FLD07 AS "Description_All"
+	FROM LandingZone.Canidate AS "LC"
+		JOIN Staging.VaseParsing AS "VP" 
+			ON LC.BZLY_VaseNbr = VP.BZLY_VaseNbr
+	where LC.FLD07 LIKE '%:%'AND  LC.FLD07 NOT LIKE '%by%'
+		AND ISNUMERIC(LEFT(LC.FLD07,1))=0
+		AND LC.FLD07 NOT LIKE 'Inscription%'
 UNION 
-SELECT VaseNbr
-	, FLD07 AS "Description_All"
-FROM dbo.STG_Inbound 
-where FLD07 NOT LIKE '0:%' AND FLD07 NOT LIKE 'A:%' AND FLD07 NOT LIKE '%by%'
-	AND FLD07 NOT IN (SELECT Input FROM dbo.LU_Geography)
-	AND FLD07 NOT LIKE 'B:%' AND FLD07 NOT LIKE 'BD:%' 
-	AND ISNUMERIC(LEFT(FLD07,1))=0
-	AND FLD07 NOT LIKE 'Kalos%';
-	
-DELETE FROM ##D WHERE Description_All IS NULL;
-DELETE FROM ##D WHERE LEN(Description_All)<5;
-
-SELECT * INTO ##D1
-FROM ##D 
-WHERE Description_All NOT LIKE 'Corpus%' AND Description_All NOT LIKE '%Kunst%'
-	 AND Description_All NOT LIKE '%Catalogue%' AND Description_All NOT LIKE '%Attische%'
-	 AND Description_All NOT LIKE '%Greek%' AND Description_All NOT LIKE '%Athen%'
-	 AND Description_All NOT LIKE '%musees%' AND Description_All NOT LIKE '%museum%'
-	 AND Description_All NOT LIKE '%Institut%' AND Description_All NOT LIKE '%Arch%'
-	 AND Description_All NOT LIKE '%Hephasistos%' AND Description_All NOT LIKE '%Amsterdam%'
-	 AND Description_All NOT LIKE '%Attic%' AND Description_All NOT LIKE '%Oxford%'
-	 AND Description_All NOT LIKE '%Marseille%' AND Description_All NOT LIKE '%Corpus%'
-	 AND Description_All NOT LIKE '%Welt%' AND Description_All NOT LIKE '%Lausanne%'
-	 AND Description_All NOT LIKE '%Paris%' AND Description_All NOT LIKE '%Berlin%'
-	 AND Description_All NOT LIKE '%Antica%' AND Description_All NOT LIKE '%Mainz%'
-	 AND Description_All NOT LIKE '%Welt%' AND Description_All NOT LIKE '%Baltimore%'
-	 AND Description_All NOT LIKE '%Museo%' AND Description_All NOT LIKE '%Classic%'
-	 AND Description_All NOT LIKE '%Hesperia%' AND Description_All NOT LIKE '%Grece%'
-	 AND Description_All NOT LIKE '%Das%' AND Description_All NOT LIKE '%Atiquorum%'
-	 AND Description_All NOT LIKE '%studi%' AND Description_All NOT LIKE '%Met%'
-	 AND Description_All NOT LIKE '%antiqu%' AND Description_All NOT LIKE '%(%)%'
-	 
-DROP TABLE ##D;
-	
-
-SELECT CR.BzlVase_NBR
-	, ISNULL(CR.Description_All,'-')+ISNULL(CR.Description_A,'-')+ISNULL(CR.Description_b,'-')+
-	ISNULL(CR.Description_Lid,'-')+ISNULL(CR.Description_interior,'-')+ISNULL(CR.Description_Inscription,'-')+
-	ISNULL(CR.Description_NamedPeople,'-')+'-'+ISNULL(X.Description_All,'') AS "Description_All"
-	INTO ##X
-FROM ##D1 AS "X"
-	 RIGHT OUTER JOIN dbo.CLEANED_Records AS "CR" ON X.VaseNbr = CR.BzlVase_NBR;
-	
-DROP TABLE ##D1;
-
-
-
-UPDATE CR
-SET CR.Description_All = X.Description_All
-FROM dbo.CLEANED_Records AS "CR" 
-	JOIN ##X AS "X" ON CR.BzlVase_NBR =X.BzlVase_NBR
-
-DROP TABLE ##X
+	SELECT DISTINCT LC.BZLY_VaseNbr
+		, LC.FLD08 AS "Description_All"
+	FROM LandingZone.Canidate AS "LC"
+		JOIN Staging.VaseParsing AS "VP" 
+			ON LC.BZLY_VaseNbr = VP.BZLY_VaseNbr
+	where LC.FLD08 LIKE '%:%'AND  LC.FLD08 NOT LIKE '%by%'
+		AND ISNUMERIC(LEFT(LC.FLD08,1))=0
+		AND LC.FLD08 NOT LIKE 'Inscription%'
+UNION 
+	SELECT DISTINCT LC.BZLY_VaseNbr
+		, LC.FLD09 AS "Description_All"
+	FROM LandingZone.Canidate AS "LC"
+		JOIN Staging.VaseParsing AS "VP" 
+			ON LC.BZLY_VaseNbr = VP.BZLY_VaseNbr
+	where LC.FLD09 LIKE '%:%'AND  LC.FLD09 NOT LIKE '%by%'
+		AND ISNUMERIC(LEFT(LC.FLD09,1))=0
+		AND LC.FLD09 NOT LIKE 'Inscription%'
+UNION 
+	SELECT DISTINCT LC.BZLY_VaseNbr
+		, LC.FLD10 AS "Description_All"
+	FROM LandingZone.Canidate AS "LC"
+		JOIN Staging.VaseParsing AS "VP" 
+			ON LC.BZLY_VaseNbr = VP.BZLY_VaseNbr
+	where LC.FLD10 LIKE '%:%'AND  LC.FLD10 NOT LIKE '%by%'
+		AND ISNUMERIC(LEFT(LC.FLD10,1))=0
+		AND LC.FLD10 NOT LIKE 'Inscription%'
+UNION 
+	SELECT DISTINCT LC.BZLY_VaseNbr
+		, LC.FLD11 AS "Description_All"
+	FROM LandingZone.Canidate AS "LC"
+		JOIN Staging.VaseParsing AS "VP" 
+			ON LC.BZLY_VaseNbr = VP.BZLY_VaseNbr
+	where LC.FLD11 LIKE '%:%'AND  LC.FLD11 NOT LIKE '%by%'
+		AND ISNUMERIC(LEFT(LC.FLD11,1))=0
+		AND LC.FLD11 NOT LIKE 'Inscription%'
